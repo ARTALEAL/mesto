@@ -9,4 +9,8 @@
 /*profile*/
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__image/profile__image.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__button-edit/profile__button-edit.css);
+@import url(../blocks/profile/__description/profile__description.css);
 
