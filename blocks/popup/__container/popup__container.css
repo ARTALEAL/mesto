@@ -9,3 +9,19 @@
   flex-direction: column;
   padding: 34px 36px 37px 36px;
 }
+
+@media screen and (max-width: 620px) {
+  .popup__container {
+    max-width: 282px;
+    padding: 25px 22px 25px 22px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popup__container {
+    max-width: 282px;
+    padding: 0;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+}
