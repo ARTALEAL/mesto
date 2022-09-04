@@ -31,4 +31,4 @@
 
 **Ссылка на проект**
 
-[оптимизировать картинки](https://tinypng.com/)
+[Проект Место](https://artaleal.github.io/mesto/)
