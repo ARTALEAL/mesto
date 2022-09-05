@@ -7,19 +7,18 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 34px 36px 37px 36px;
+  padding: 34px 0px 37px 0px;
 }
 
 @media screen and (max-width: 620px) {
   .popup__container {
     max-width: 282px;
-    padding: 25px 22px 25px 22px;
+    padding: 25px 22px;
   }
 }
 
 @media screen and (max-width: 320px) {
   .popup__container {
-    max-width: 282px;
     padding: 0;
     padding-top: 25px;
     padding-bottom: 25px;

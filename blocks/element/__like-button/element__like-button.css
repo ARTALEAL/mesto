@@ -5,4 +5,9 @@
   height: 19px;
   background-position: center;
   border: none;
+  transition: 0.7s ease;
+}
+
+.element__like-button:hover {
+  opacity: .5;
 }
