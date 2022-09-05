@@ -16,3 +16,9 @@
     background-repeat: no-repeat;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .header__logo {
+    margin-bottom: 22px;
+  }
+}
