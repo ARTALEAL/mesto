@@ -35,7 +35,7 @@ let nameInput = document.querySelector('.popup__input_data_name');
 let jobInput = document.querySelector('.popup__input_data_job');
 
 const elements = document.querySelector('.elements');
-
+//Редактирование профиля
 function openPopup() {
   popup.classList.add('popup_opened');
   nameInput.value = getName.textContent;
@@ -89,7 +89,26 @@ buttonAdd.addEventListener('click', addCard);
 buttonCloseAdd.addEventListener('click', closeAddPopup);
 submitButtonAdd.addEventListener('click', addCardSubmit);
 
-//Функционал подгрузки и пр.
+//GALLERY
+const popupGalery = document.querySelector('.popup__gallery');
+const closeGalleryButton = popupGalery.querySelector('.popup__close-button');
+const galleryImage = document.querySelector('.popup__image');
+const galleryFigcaption = document.querySelector('.popup__figcaption');
+
+function openGallery(name, link) {
+  galleryImage.setAttribute('src', link);
+  galleryImage.setAttribute('alt', name);
+  galleryFigcaption.innerText = name;
+  popupGalery.classList.add('popup_opened');
+}
+
+function closeGallery() {
+  popupGalery.classList.remove('popup_opened');
+}
+
+closeGalleryButton.addEventListener('click', closeGallery);
+
+//Функционал и загрузка.
 function createCard(name, link) {
   const card = document.getElementById('card').content.cloneNode(true);
 
@@ -110,6 +129,10 @@ function createCard(name, link) {
     event.target.closest('.element').remove();
   });
 
+  cardImage.addEventListener('click', function() {
+    openGallery(name, link);
+  })
+
   return card;
 }
 
@@ -117,3 +140,6 @@ initialCards.forEach((data) => {
   const card = createCard(data.name, data.link);
   elements.append(card);
 });
+
+
+
