@@ -26,7 +26,7 @@
       </div>
     </section>
     <section class="elements">
-      <div class="element">
+      <!-- <div class="element">
         <img class="element__picture" src="images/places/karachaevsk.png" alt="Карачаевск">
         <div class="element__description">
           <h2 class="element__title">Карачаевск</h2>
@@ -62,23 +62,23 @@
         </div>
       </div>
       <div class="element">
+        <button class="element__delete-button" type="button"></button>
         <img class="element__picture" src="images/places/karachaevsk.png" alt="Карачаевск-Черкесск">
         <div class="element__description">
           <h2 class="element__title">Карачаево-Черкесская Республика</h2>
           <button class="element__like-button" type="button"></button>
         </div>
-      </div>
+      </div> -->
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyrights">&copy; 2022 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup popup__profile-edit">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form method="post" class="popup__form" name="form-popup">
-        <input type="text" name="name-input" class="popup__input popup__input_data_name"
-          placeholder="Жак-Ив Кусто">
+        <input type="text" name="name-input" class="popup__input popup__input_data_name" placeholder="Жак-Ив Кусто">
         <input type="text" name="job-input" class="popup__input popup__input_data_job"
           placeholder="Исследователь океана">
         <button class="button popup__submit-button" type="submit">Сохранить</button>
@@ -86,6 +86,37 @@
       <button class="button popup__close-button" type="button">Закрыть</button>
     </div>
   </div>
+  <div class="popup popup__add-card">
+    <div class="popup__container">
+      <h2 class="popup__title">Новое место</h2>
+      <form method="post" class="popup__form" name="form-popup">
+        <input type="text" name="name-input" class="popup__input popup__input_data_name" placeholder="Название">
+        <input type="text" name="job-input" class="popup__input popup__input_data_url"
+          placeholder="Ссылка на картинку">
+        <button class="button popup__submit-button" type="submit">Создать</button>
+      </form>
+      <button class="button popup__close-button" type="button">Закрыть</button>
+    </div>
+  </div>
+  <div class="popup popup__gallery">
+    <div class="popup__preview">
+      <figure class="popup__figure">
+        <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="Фотография">
+        <figcaption class="popup__figcaption">sss</figcaption>
+      </figure>
+      <button class="button popup__close-button" type="button">Закрыть</button>
+    </div>
+  </div>
+  <template id="card">
+    <div class="element">
+      <button class="element__delete-button" type="button"></button>
+      <img class="element__picture" src="images/places/karachaevsk.png" alt="Карачаевск-Черкесск">
+      <div class="element__description">
+        <h2 class="element__title">Карачаево-Черкесская Республика</h2>
+        <button class="element__like-button" type="button"></button>
+      </div>
+    </div>
+  </template>
   <script src="scripts/index.js"></script>
 </body>
 
