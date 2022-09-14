@@ -58,7 +58,7 @@ buttonClose.addEventListener('click', closePopup);
 editForm.addEventListener('submit', formSubmitHandler);
 
 //
-const popupAdd = document.querySelector('.popup__add-card');
+const popupAdd = document.querySelector('.popup_add-card');
 const buttonAdd = document.querySelector('.profile__button-add');
 const buttonCloseAdd = popupAdd.querySelector('.popup__close-button');
 const submitButtonAdd = popupAdd.querySelector('.popup__submit-button');
@@ -66,7 +66,7 @@ const placeName = popupAdd.querySelector('.popup__input_data_name');
 const imageURL = popupAdd.querySelector('.popup__input_data_url');
 const popupForm = popupAdd.querySelector('.popup__form');
 
-//Открытие попап, добавления карточки
+//Добавления карточки
 function addCard() {
   popupAdd.classList.add('popup_opened');
 }
@@ -90,7 +90,7 @@ buttonCloseAdd.addEventListener('click', closeAddPopup);
 submitButtonAdd.addEventListener('click', addCardSubmit);
 
 //GALLERY
-const popupGalery = document.querySelector('.popup__gallery');
+const popupGalery = document.querySelector('.popup_gallery');
 const closeGalleryButton = popupGalery.querySelector('.popup__close-button');
 const galleryImage = document.querySelector('.popup__image');
 const galleryFigcaption = document.querySelector('.popup__figcaption');
