@@ -3,13 +3,11 @@ function makePopup(universalPopup) {
   const popup = {
     open() {
       universalPopup.classList.add("popup_opened");
-      closeButtonPopup.addEventListener("click", onCloseButtonClick)
+      closeButtonPopup.addEventListener("click", onCloseButtonClick);
     },
     close() {
       universalPopup.classList.remove("popup_opened");
-      universalPopup.removeEventListener("mousedown", onOverlayClick);
-      document.removeEventListener("keydown", onKeyDown);
-      closeButtonPopup.removeEventListener("click", onCloseButtonClick)
+      closeButtonPopup.removeEventListener("click", onCloseButtonClick);
     }
   };
 
