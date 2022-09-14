@@ -55,7 +55,7 @@ buttonAdd.addEventListener("click", function () {
   popupAdd.open();
 });
 
-const popupForm = document.querySelector('.popup_add-place');
+const popupForm = document.querySelector('.popup__form_add-place');
 const placeName = document.querySelector('.popup__input_place_name');
 const imageURL = document.querySelector('.popup__input_image_url');
 
