@@ -33,10 +33,15 @@
   <div class="popup popup_profile-edit">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form method="post" class="popup__form" name="form-popup">
-        <input type="text" name="name-input" class="popup__input popup__input_data_name" placeholder="Жак-Ив Кусто">
+      <form method="post" class="popup__form" name="form-popup" novalidate>
+        <input type="text" name="name-input" class="popup__input popup__input_data_name" placeholder="Жак-Ив Кусто"
+          id="input-popup-title" value="" minlength="2" maxlength="40" required>
+        <!--параметры валидации-->
+        <span class="popup__error-message input-popup-title-error"></span>
         <input type="text" name="job-input" class="popup__input popup__input_data_job"
-          placeholder="Исследователь океана">
+          placeholder="Исследователь океана" id="input-popup-subtitle" value="" minlength="2" maxlength="200" required>
+        <!--параметры валидации-->
+        <span class="popup__error-message input-popup-subtitle-error"></span>
         <button class="button popup__submit-button" type="submit">Сохранить</button>
       </form>
       <button class="button popup__close-button" type="button">Закрыть</button>
@@ -45,9 +50,15 @@
   <div class="popup popup_add-card">
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
-      <form method="post" class="popup__form popup__form_add-place" name="form-popup">
-        <input type="text" name="name-input" class="popup__input popup__input_place_name" placeholder="Название">
-        <input type="text" name="job-input" class="popup__input popup__input_image_url" placeholder="Ссылка на картинку">
+      <form method="post" class="popup__form popup__form_add-place" name="form-popup" novalidate>
+        <input type="text" name="name-input" class="popup__input popup__input_place_name" placeholder="Название"
+          id="card-name" minlength="2" maxlength="30" required>
+        <!--параметры валидации-->
+        <span class="popup__error-message card-name-error"></span>
+        <input type="url" name="job-input" class="popup__input popup__input_image_url" placeholder="Ссылка на картинку"
+          id="link" required>
+        <!--параметры валидации-->
+        <span class="popup__error-message link-error"></span>
         <button class="button popup__submit-button" type="submit">Создать</button>
       </form>
       <button class="button popup__close-button" type="button">Закрыть</button>
@@ -74,6 +85,7 @@
   </template>
   <script src="scripts/data.js"></script>
   <script src="scripts/index.js"></script>
+  <script src="scripts/validate.js"></script>
 </body>
 
 </html>
