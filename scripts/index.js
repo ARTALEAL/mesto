@@ -5,13 +5,13 @@ function makePopup(universalPopup) {
       universalPopup.classList.add("popup_opened");
       closeButtonPopup.addEventListener("click", onCloseButtonClick);
       universalPopup.addEventListener("mousedown",  clickOnOverlay);
-      document.addEventListener("keydown", keydownOn);
+      document.addEventListener("keydown", onKeydown);
     },
     close() {
       universalPopup.classList.remove("popup_opened");
       closeButtonPopup.removeEventListener("click", onCloseButtonClick);
       universalPopup.removeEventListener("mousedown",  clickOnOverlay);
-      document.removeEventListener("keydown", keydownOn);
+      document.removeEventListener("keydown", onKeydown);
     }
   };
 
@@ -25,7 +25,7 @@ function makePopup(universalPopup) {
     }
   };
 
-  const keydownOn = (event) => {
+  const onKeydown = (event) => {
     if (event.key === "Escape"){
       popup.close();
     }
@@ -34,49 +34,51 @@ function makePopup(universalPopup) {
   return popup;
 }
 
-const popup = makePopup(document.querySelector('.popup_profile-edit'));
+const popupProfileEdit = makePopup(document.querySelector('.popup_profile-edit'));
 const buttonEdit = document.querySelector('.profile__button-edit');
 const buttonClose = document.querySelector('.popup__close-button');
-const editForm = document.querySelector('.popup__container');
+const formEdit = document.querySelector('.popup__container');
 const getName = document.querySelector('.profile__name');
 const getJob = document.querySelector('.profile__description');
-let nameInput = document.querySelector('.popup__input_data_name');
-let jobInput = document.querySelector('.popup__input_data_job');
+const nameInput = document.querySelector('.popup__input_data_name');
+const jobInput = document.querySelector('.popup__input_data_job');
 
 const elements = document.querySelector('.elements');
 
 buttonEdit.addEventListener("click", function () {
-  popup.open();
-  titleInput.value = titleProfile.textContent;
-  subtitleInput.value = subtitleProfile.textContent;
+  popupProfileEdit.open();
 });
 
 function submitEditProfile(evt) {
   evt.preventDefault();
   getName.textContent = nameInput.value;
   getJob.textContent = jobInput.value;
-  popup.close();
+  popupProfileEdit.close();
 }
 
-editForm.addEventListener('submit', submitEditProfile);
+formEdit.addEventListener('submit', submitEditProfile);
 
 //Проектная работа 5
 const popupAdd = makePopup(document.querySelector('.popup_add-card'));
 const buttonAdd = document.querySelector('.profile__button-add');
+const formAdd = document.querySelector('.popup__form_add-place');
+const buttonCreateCard = formAdd.querySelector('.popup__submit-button');
 
 buttonAdd.addEventListener("click", function () {
-  popupForm.reset();
+  buttonCreateCard.setAttribute('disabled', 'disabled');
+  buttonCreateCard.classList.add('popup__submit-button_disabled');
   popupAdd.open();
+  popupForm.reset();
 });
 
 const popupForm = document.querySelector('.popup__form_add-place');
 const placeName = document.querySelector('.popup__input_place_name');
-const imageURL = document.querySelector('.popup__input_image_url');
+const imageUrl = document.querySelector('.popup__input_image_url');
 
 popupForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  const card = createCard(placeName.value, imageURL.value);
+  const card = createCard(placeName.value, imageUrl.value);
   elements.prepend(card);
 
   popupAdd.close();
