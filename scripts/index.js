@@ -4,16 +4,32 @@ function makePopup(universalPopup) {
     open() {
       universalPopup.classList.add("popup_opened");
       closeButtonPopup.addEventListener("click", onCloseButtonClick);
+      universalPopup.addEventListener("mousedown",  clickOnOverlay);
+      document.addEventListener("keydown", keydownOn);
     },
     close() {
       universalPopup.classList.remove("popup_opened");
       closeButtonPopup.removeEventListener("click", onCloseButtonClick);
+      universalPopup.removeEventListener("mousedown",  clickOnOverlay);
+      document.removeEventListener("keydown", keydownOn);
     }
   };
 
   const onCloseButtonClick = () => {
     popup.close();
   };
+
+  const clickOnOverlay = (event) => {
+    if (event.target.classList.contains("popup_opened")){
+      popup.close();
+    }
+  };
+
+  const keydownOn = (event) => {
+    if (event.key === "Escape"){
+      popup.close();
+    }
+  }
 
   return popup;
 }
