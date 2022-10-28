@@ -1,16 +1,45 @@
+import Card from "./card.js";
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
 function makePopup(universalPopup) {
   const closeButtonPopup = universalPopup.querySelector(".popup__close-button");
   const popup = {
     open() {
       universalPopup.classList.add("popup_opened");
       closeButtonPopup.addEventListener("click", onCloseButtonClick);
-      universalPopup.addEventListener("mousedown",  clickOnOverlay);
+      universalPopup.addEventListener("mousedown", clickOnOverlay);
       document.addEventListener("keydown", onKeydown);
     },
     close() {
       universalPopup.classList.remove("popup_opened");
       closeButtonPopup.removeEventListener("click", onCloseButtonClick);
-      universalPopup.removeEventListener("mousedown",  clickOnOverlay);
+      universalPopup.removeEventListener("mousedown", clickOnOverlay);
       document.removeEventListener("keydown", onKeydown);
     }
   };
@@ -20,13 +49,13 @@ function makePopup(universalPopup) {
   };
 
   const clickOnOverlay = (event) => {
-    if (event.target.classList.contains("popup_opened")){
+    if (event.target.classList.contains("popup_opened")) {
       popup.close();
     }
   };
 
   const onKeydown = (event) => {
-    if (event.key === "Escape"){
+    if (event.key === "Escape") {
       popup.close();
     }
   }
@@ -74,12 +103,16 @@ buttonAdd.addEventListener("click", function () {
 const popupForm = document.querySelector('.popup__form_add-place');
 const placeName = document.querySelector('.popup__input_place_name');
 const imageUrl = document.querySelector('.popup__input_image_url');
+const newCardItem = {};
 
 popupForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  const card = createCard(placeName.value, imageUrl.value);
-  elements.prepend(card);
+
+  newCardItem.name = placeName.value;
+  newCardItem.link = imageUrl.value;
+  const card = addElement(newCardItem);
+  // elements.prepend(card);
 
   popupAdd.close();
 });
@@ -97,37 +130,51 @@ function openGallery(name, link) {
 }
 
 //Функционал и загрузка.
-function createCard(name, link) {
-  const card = document.getElementById('card').content.cloneNode(true);
+// function createCard(name, link) {
+//   const card = document.getElementById('card').content.cloneNode(true);
 
-  const cardLike = card.querySelector('.element__like-button');
-  const deleteIcon = card.querySelector('.element__delete-button');
-  const cardImage = card.querySelector('.element__picture');
-  const cardTitle = card.querySelector('.element__title');
+//   const cardLike = card.querySelector('.element__like-button');
+//   const deleteIcon = card.querySelector('.element__delete-button');
+//   const cardImage = card.querySelector('.element__picture');
+//   const cardTitle = card.querySelector('.element__title');
 
-  cardImage.setAttribute('src', link);
-  cardImage.setAttribute('alt', name);
-  cardTitle.innerText = name;
+//   cardImage.setAttribute('src', link);
+//   cardImage.setAttribute('alt', name);
+//   cardTitle.innerText = name;
 
-  cardLike.addEventListener('click', function () {
-    cardLike.classList.toggle('element__like-button_active');
-  });
+//   cardLike.addEventListener('click', function () {
+//     cardLike.classList.toggle('element__like-button_active');
+//   });
 
-  deleteIcon.addEventListener('click', function (event) {
-    event.target.closest('.element').remove();
-  });
+//   deleteIcon.addEventListener('click', function (event) {
+//     event.target.closest('.element').remove();
+//   });
 
-  cardImage.addEventListener('click', function () {
-    openGallery(name, link);
-  })
+//   cardImage.addEventListener('click', function () {
+//     openGallery(name, link);
+//   })
 
-  return card;
-}
+//   return card;
+// }
 
-initialCards.forEach((data) => {
-  const card = createCard(data.name, data.link);
-  elements.append(card);
+// initialCards.forEach((data) => {
+//   const newCard = new Card(data, "#card", openGallery);
+//   const card = newCard.createCard(data.name, data.link);
+//   elements.append(card);
+// });
+
+
+const template = document.querySelector('#card');
+initialCards.forEach((item) => {
+  elements.append(createCard(item));
 });
 
+function createCard(item) {
+  const card = new Card(item, template, openGallery);
+  const cardItem = card.generateCard();
+  return cardItem;
+}
 
-
+function addElement(item) {
+  elements.prepend(createCard(item));
+}
