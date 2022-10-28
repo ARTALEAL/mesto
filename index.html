@@ -33,7 +33,7 @@
   <div class="popup popup_profile-edit">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form method="post" class="popup__form" name="form-popup" novalidate>
+      <form method="post" class="popup__form" name="user" novalidate>
         <input type="text" name="name-input" class="popup__input popup__input_data_name" placeholder="Жак-Ив Кусто"
           id="input-popup-title" value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
         <span class="popup__error-message input-popup-title-error"></span>
@@ -49,7 +49,7 @@
   <div class="popup popup_add-card">
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
-      <form method="post" class="popup__form popup__form_add-place" name="form-popup" novalidate>
+      <form method="post" class="popup__form popup__form_add-place" name="card" novalidate>
         <input type="text" name="name-input" class="popup__input popup__input_place_name" placeholder="Название"
           id="card-name" minlength="2" maxlength="30" required>
         <span class="popup__error-message card-name-error"></span>
@@ -80,8 +80,6 @@
       </div>
     </div>
   </template>
-  <!-- <script src="scripts/data.js"></script>-->
-  <script src="scripts/validate.js"></script>
   <script type="module" src="scripts/index.js"></script>
 </body>
 

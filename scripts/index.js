@@ -1,4 +1,5 @@
 import Card from "./card.js";
+import FormValidator from "./FormValidator.js";
 
 const initialCards = [
   {
@@ -112,7 +113,6 @@ popupForm.addEventListener("submit", function (evt) {
   newCardItem.name = placeName.value;
   newCardItem.link = imageUrl.value;
   const card = addElement(newCardItem);
-  // elements.prepend(card);
 
   popupAdd.close();
 });
@@ -129,41 +129,6 @@ function openGallery(name, link) {
   popupGalery.open();
 }
 
-//Функционал и загрузка.
-// function createCard(name, link) {
-//   const card = document.getElementById('card').content.cloneNode(true);
-
-//   const cardLike = card.querySelector('.element__like-button');
-//   const deleteIcon = card.querySelector('.element__delete-button');
-//   const cardImage = card.querySelector('.element__picture');
-//   const cardTitle = card.querySelector('.element__title');
-
-//   cardImage.setAttribute('src', link);
-//   cardImage.setAttribute('alt', name);
-//   cardTitle.innerText = name;
-
-//   cardLike.addEventListener('click', function () {
-//     cardLike.classList.toggle('element__like-button_active');
-//   });
-
-//   deleteIcon.addEventListener('click', function (event) {
-//     event.target.closest('.element').remove();
-//   });
-
-//   cardImage.addEventListener('click', function () {
-//     openGallery(name, link);
-//   })
-
-//   return card;
-// }
-
-// initialCards.forEach((data) => {
-//   const newCard = new Card(data, "#card", openGallery);
-//   const card = newCard.createCard(data.name, data.link);
-//   elements.append(card);
-// });
-
-
 const template = document.querySelector('#card');
 initialCards.forEach((item) => {
   elements.append(createCard(item));
@@ -178,3 +143,21 @@ function createCard(item) {
 function addElement(item) {
   elements.prepend(createCard(item));
 }
+
+
+const enableValidation = {
+  popupSelector: ".popup",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__submit-button",
+  inactiveButtonClass: "popup__submit-button_disabled",
+  inputErrorClass: "popup__input_error",
+  errorClass: "popup__error-message_active"
+};
+
+const formEditProfile = document.forms.user;
+const profileEditFormValidator = new FormValidator(enableValidation, formEditProfile);
+profileEditFormValidator.enableValidation();
+
+const formAddNewCard = document.forms.card;
+const newCardFormValidator = new FormValidator(enableValidation, formAddNewCard);
+newCardFormValidator.enableValidation();

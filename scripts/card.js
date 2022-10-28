@@ -1,12 +1,4 @@
-
 export default class Card {
-  // constructor(data, templateSelector, openGallery) {
-  //   this.cardName = data.name;
-  //   this.cardLink = data.link;
-  //   this.templateSelector = templateSelector;
-  //   this.openGallery = openGallery;
-  // }
-
   constructor(item, templateSelector, openGallery) {
     this._name = item.name;
     this._link = item.link;
@@ -67,55 +59,5 @@ export default class Card {
     this._setLikeButtonEventListener();
     this._setOpenPopupEventListeners();
   }
-
-
-
-
-
-
-
-
-
-  // createCard() {
-  //   const card = document
-  //     .querySelector(this.templateSelector)
-  //     .content
-  //     .cloneNode(true);
-
-  //   const cardLike = card.querySelector('.element__like-button');
-  //   const deleteIcon = card.querySelector('.element__delete-button');
-  //   // const cardImage = card.querySelector('.element__picture');
-  //   // const cardTitle = card.querySelector('.element__title');
-
-  //   // cardImage.setAttribute('src', link);
-  //   // cardImage.setAttribute('alt', name);
-  //   // cardTitle.innerText = name;
-
-  //   this.cardImage = card.querySelector('.element__picture');
-  //   this.cardTitle = card.querySelector('.element__title');
-
-  //   cardLike.addEventListener('click', function () {
-  //     cardLike.classList.toggle('element__like-button_active');
-  //   });
-
-  //   deleteIcon.addEventListener('click', function (event) {
-  //     event.target.closest('.element').remove();
-  //   });
-
-  //   this.cardImage.addEventListener('click', function openGallery(name, link) {
-  //     const popupGalery = makePopup(document.querySelector('.popup_gallery'));
-  //     const galleryImage = document.querySelector('.popup__image');
-  //     const galleryFigcaption = document.querySelector('.popup__figcaption');
-  //     galleryImage.setAttribute('src', link);
-  //     galleryImage.setAttribute('alt', name);
-  //     galleryFigcaption.innerText = name;
-  //     popupGalery.open();
-  //   })
-
-  //   return card;
-  // }
-
-
-
 
 }
