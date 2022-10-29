@@ -1,7 +1,7 @@
 export default class Card {
-  constructor(item, templateSelector, openGallery) {
-    this._name = item.name;
-    this._link = item.link;
+  constructor(cardData, templateSelector, openGallery) {
+    this._name = cardData.name;
+    this._link = cardData.link;
     this._templateSelector = templateSelector;
     this._openGallery = openGallery;
   }
@@ -33,18 +33,22 @@ export default class Card {
 
   _setLikeButtonEventListener() {
     this._cardLike.addEventListener('click', () => {
-      this._like();
+      this._toggleLike();
     });
   }
 
-  _like() {
+  _toggleLike() {
     this._cardLike.classList.toggle('element__like-button_active');
   }
 
   _setButtonDeleteCardEventListener() {
-    this._cardTrash.addEventListener('click', function (event) {
-      event.target.closest('.element').remove();
+    this._cardTrash.addEventListener('click', () => {
+      this._deleteCard();
     });
+  }
+
+  _deleteCard() {
+    this._element.closest('.element').remove();
   }
 
   _setOpenPopupEventListeners() {
