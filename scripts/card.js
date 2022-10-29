@@ -57,7 +57,6 @@ export default class Card {
     })
   }
 
-
   _setEventListeners() {
     this._setButtonDeleteCardEventListener();
     this._setLikeButtonEventListener();
