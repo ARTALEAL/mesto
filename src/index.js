@@ -80,6 +80,7 @@ buttonEdit.addEventListener('click', () => {
 });
 
 buttonAdd.addEventListener('click', () => {
+  newCardFormValidator.disableButton();
   newCardFormValidator.hideErrors();
   popupNewCard.open();
 });
