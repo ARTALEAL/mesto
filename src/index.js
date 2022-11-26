@@ -1,4 +1,4 @@
-// import './pages/index.css';
+import './pages/index.css';
 import Card from "./components/Card.js";
 import UserInfo from "./components/UserInfo.js";
 import PopupWithForm from "./components/PopupWithForm.js";
