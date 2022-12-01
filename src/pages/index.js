@@ -5,14 +5,36 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
+import Api from '../components/Api.js';
 
 import {
   buttonEdit,
   formEditProfile,
   buttonAdd,
-  initialCards,
   validationConfig
 } from "../utils/constants.js";
+
+//Api
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-54',
+  headers: {
+    authorization: 'bcb4532a-7b6a-4778-ad3b-abcb539d9fe0',
+    'Content-Type': 'application/json'
+  }
+});
+
+let userId;
+
+// Загрузка готовых карточек и данных о пользователе с сервера
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([initialCards, userData]) => {
+    userInfo.setUserInfo(userData);
+    userId = userData._id;
+    cardList.renderItems(initialCards);
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  });
 
 // создание карточек
 
@@ -20,24 +42,43 @@ function createCard(items) {
   const card = new Card({
     cardData: items,
     templateSelector: '#card',
+    userId: userId,
     handleCardClick: (items) => {
       popupFullImage.open(items);
     }
   });
   const cardItem = card.generateCard();
-
   return cardItem;
 }
 
+// const cardList = new Section({
+//   items: initialCards,
+//   renderer: (data) => {
+//     cardList.addItem(createCard(data));
+//   },
+//   containerSelector: '.elements',
+// });
+
+// cardList.renderItems();
+
+// Создание экземпляра класса Section
+// const cardList = new Section({
+//     items: initialCards,
+//     renderer: (data) => {
+//       cardList.addItem(createCard(data));
+//     },
+//     containerSelector: '.elements',
+//   });
+
+// Создание экземпляра класса Section
 const cardList = new Section({
-  items: initialCards,
-  renderer: (data) => {
+    renderer: (data) => {
     cardList.addItem(createCard(data));
   },
-  containerSelector: '.elements',
-});
+}, '.elements');
 
-cardList.renderItems();
+
+
 
 // экземпляр класса попапа юзера
 
@@ -52,7 +93,7 @@ popupEditProfile.setEventListeners();
 
 const userInfo = new UserInfo({
   name: '.profile__name',
-  job: '.profile__description'
+  about: '.profile__description'
 });
 
 // экземпляр класса попапа новой карточки

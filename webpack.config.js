@@ -10,6 +10,7 @@ module.exports = {
     filename: 'main.js',
     publicPath: ''
   },
+  devtool: 'source-map',
   mode: 'development',
   devServer: {
     static: path.resolve(__dirname, './dist'), // путь, куда "смотрит" режим разработчика
@@ -50,6 +51,7 @@ module.exports = {
       template: './src/index.html' // путь к файлу index.html
     }),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin(),
+  
   ]
 };
