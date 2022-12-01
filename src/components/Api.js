@@ -26,4 +26,18 @@ export default class Api {
     })
       .then(res => this._parseResponse(res));
   }
-}
+
+   // Редактирование информации о пользователе через попап
+ editUserInfo(data) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about
+      })
+    })
+      .then(res => this._parseResponse(res));
+  }
+};
+

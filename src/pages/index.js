@@ -85,7 +85,18 @@ const cardList = new Section({
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_profile-edit',
   handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
+    popupEditProfile.loading(true);
+    api.editUserInfo(data)
+      .then((data) => {
+        userInfo.setUserInfo(data);
+        popupEditProfile.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        popupEditProfile.loading(false);
+      });
   }
 });
 
