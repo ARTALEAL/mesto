@@ -1,5 +1,6 @@
 export const formEditProfile = document.forms.user;
 export const formAddNewCard = document.forms.card;
+export const formEditAvatar = document.forms.avatar;
 // export const popupProfileEdit = makePopup(document.querySelector('.popup_profile-edit'));
 export const buttonEdit = document.querySelector('.profile__button-edit');
 export const buttonClose = document.querySelector('.popup__close-button');
@@ -8,6 +9,7 @@ export const name = document.querySelector('.profile__name');
 export const job = document.querySelector('.profile__description');
 export const nameInput = document.querySelector('.popup__input_data_name');
 export const jobInput = document.querySelector('.popup__input_data_job');
+export const avatar = document.querySelector('.profile__image');
 
 export const cardsContainer = document.querySelector('.elements');
 //ПР5
@@ -20,6 +22,8 @@ export const popupFormAddPlace = document.querySelector('.popup__form_add-place'
 export const placeName = document.querySelector('.popup__input_place_name');
 export const imageUrl = document.querySelector('.popup__input_image_url');
 export const newCardItem = {};
+
+export const buttonEditAvatar = document.querySelector('.profile__avatar-btn');
 
 //GALLERY
 // export const popupGalery = makePopup(document.querySelector('.popup_gallery'));

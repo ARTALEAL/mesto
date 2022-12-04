@@ -11,7 +11,10 @@ import {
   buttonEdit,
   formEditProfile,
   buttonAdd,
-  validationConfig
+  validationConfig,
+  buttonEditAvatar,
+  formEditAvatar,
+  avatar
 } from "../utils/constants.js";
 
 //Api
@@ -78,8 +81,6 @@ const cardList = new Section({
 }, '.elements');
 
 
-
-
 // экземпляр класса попапа юзера
 
 const popupEditProfile = new PopupWithForm({
@@ -102,9 +103,31 @@ const popupEditProfile = new PopupWithForm({
 
 popupEditProfile.setEventListeners();
 
+// Создание попапа редактирования аватара пользователя
+const editAvatarPopup = new PopupWithForm({
+  popupSelector: '.popup_avatar',
+  handleFormSubmit: (data) => {
+    editAvatarPopup.loading(true);
+    api.editAvatar(data)
+      .then((data) => {
+        avatar.src = data.avatar;
+        editAvatarPopup.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        editAvatarPopup.loading(false);
+      });
+  }
+});
+editAvatarPopup.setEventListeners();
+
+
 const userInfo = new UserInfo({
   name: '.profile__name',
-  about: '.profile__description'
+  about: '.profile__description',
+  avatar: '.profile__image'
 });
 
 // экземпляр класса попапа новой карточки
@@ -137,9 +160,19 @@ buttonAdd.addEventListener('click', () => {
   popupNewCard.open();
 });
 
+// // Обработчик кнопки Edit аватара пользователя
+buttonEditAvatar.addEventListener('click', () => {
+  avatarEditFormValidator.disableButton();
+  avatarEditFormValidator.hideErrors();
+  editAvatarPopup.open();
+});
+
 const profileEditFormValidator = new FormValidator(validationConfig, formEditProfile);
 profileEditFormValidator.enableValidation();
 
 const formAddNewCard = document.forms.card;
 const newCardFormValidator = new FormValidator(validationConfig, formAddNewCard);
 newCardFormValidator.enableValidation();
+
+const avatarEditFormValidator = new FormValidator(validationConfig, formEditAvatar);
+avatarEditFormValidator.enableValidation();
