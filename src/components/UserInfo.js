@@ -16,8 +16,14 @@ export default class UserInfo {
   }
 
   setUserInfo(data) {
-    this._name.textContent = data.name;
-    this._about.textContent = data.about;
-    this._avatar.src = data.avatar;
+    if (data.name || data.about || data.avatar) {
+      this._name.textContent = data.name;
+      this._about.textContent = data.about;
+      this._avatar.src = data.avatar;
+    } else {
+      this._name.textContent = 'Нет данных, перезагрузите страницу';
+      this._about.textContent = 'Нет данных, перезагрузите страницу';
+    }
   }
+
 }

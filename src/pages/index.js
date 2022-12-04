@@ -34,7 +34,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([initialCards, userData]) => {
     userInfo.setUserInfo(userData);
     userId = userData._id;
-    cardList.renderItems(initialCards);
+    cardList.renderItems(initialCards.reverse());
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`);
