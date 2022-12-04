@@ -30,11 +30,13 @@ export default class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = `Фотография: ${this._name}`;
     this._element.querySelector('.element__title').textContent = this._name;
+    this._likesNumber = this._element.querySelector('.element__like-container');
 
 
     this._cardTrash = this._element.querySelector('.element__delete-button');
     this._cardLike = this._element.querySelector('.element__like-button');
     this._hasDeleteBtn();
+    this._likesNumber.textContent = this._likes.length;
 
     this._setEventListeners();
 
@@ -93,7 +95,7 @@ export default class Card {
   handleLikeCard(cardData) {
     this._likes = cardData.likes;
     this._likesNumber.textContent = this._likes.length;
-    this._likeBtn.classList.toggle('element__like-button_active');
+    this._cardLike.classList.toggle('element__like-button_active');
   }
 
 }
