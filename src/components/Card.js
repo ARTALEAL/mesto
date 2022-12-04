@@ -36,6 +36,7 @@ export default class Card {
     this._cardTrash = this._element.querySelector('.element__delete-button');
     this._cardLike = this._element.querySelector('.element__like-button');
     this._hasDeleteBtn();
+    this._isCardLiked();
     this._likesNumber.textContent = this._likes.length;
 
     this._setEventListeners();
@@ -44,14 +45,21 @@ export default class Card {
   }
 
   _setLikeButtonEventListener() {
+    // this._cardLike.addEventListener('click', () => {
+    //   this._toggleLike();
+    // });
     this._cardLike.addEventListener('click', () => {
-      this._toggleLike();
-    });
+      if (this._cardLike.classList.contains('element__like-button_active')) {
+        this._handleRemoveLike(this._cardId);
+      } else {
+        this._handleSetLike(this._cardId);
+      }
+    })
   }
 
-  _toggleLike() {
-    this._cardLike.classList.toggle('element__like-button_active');
-  }
+  // _toggleLike() {
+  //   this._cardLike.classList.toggle('element__like-button_active');
+  // }
 
   _setButtonDeleteCardEventListener() {
     this._cardTrash.addEventListener('click', () => {
@@ -96,6 +104,15 @@ export default class Card {
     this._likes = cardData.likes;
     this._likesNumber.textContent = this._likes.length;
     this._cardLike.classList.toggle('element__like-button_active');
+  }
+
+  // Проверка, стоит ли лайк на карточке
+  _isCardLiked() {
+    if (this._likes.some((user) => {
+      return this._userId === user._id;
+    })) {
+      this._cardLike.classList.add('element__like-button_active');
+    }
   }
 
 }
