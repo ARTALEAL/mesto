@@ -50,5 +50,26 @@ export default class Api {
     })
       .then(res => this._parseResponse(res));
   }
+
+      // Добавление новой карточки через попап
+  addCard(data) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link
+      })
+    })
+      .then(res => this._parseResponse(res));
+  }
+      // Удаление карточки
+      deleteCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+          method: 'DELETE',
+          headers: this._headers
+        })
+          .then(res => this._parseResponse(res));
+      }
 };
 

@@ -1,11 +1,18 @@
 export default class Card {
-  constructor({cardData, templateSelector, handleCardClick}) {
+  constructor({cardData, templateSelector, userId, handleCardClick, handleDeleteIconClick, handleSetLike, handleRemoveLike}) {
     this._cardData = cardData;
     this._name = cardData.name;
     this._link = cardData.link;
     this._templateSelector = templateSelector;
+    this._userId = userId;
+    this._cardId = cardData._id;
+    this._cardOwnerId = cardData.owner._id;
     this._handleCardClick = handleCardClick;
-
+    this._handleDeleteIconClick = handleDeleteIconClick;
+    this._cardId = cardData._id;
+    this._likes = cardData.likes;
+    this._handleSetLike = handleSetLike;
+    this._handleRemoveLike = handleRemoveLike;
   }
 
   _getTemplate() {
@@ -27,6 +34,7 @@ export default class Card {
 
     this._cardTrash = this._element.querySelector('.element__delete-button');
     this._cardLike = this._element.querySelector('.element__like-button');
+    this._hasDeleteBtn();
 
     this._setEventListeners();
 
@@ -45,13 +53,22 @@ export default class Card {
 
   _setButtonDeleteCardEventListener() {
     this._cardTrash.addEventListener('click', () => {
-      this._deleteCard();
+      // this._deleteCard();
+      this._handleDeleteIconClick(this._cardId);
     });
   }
 
-  _deleteCard() {
-    this._element.closest('.element').remove();
-  }
+  // _deleteCard() {
+  //   this._element.closest('.element').remove();
+  // }
+    // Удаление карточки
+    deleteCard() {
+        this._element.closest('.element').remove();
+      }
+    // deleteCard() {
+    //   this._element.remove();
+    //   this._element = null;
+    // }
 
   _setOpenPopupEventListeners() {
     this._cardImage.addEventListener('click', () => {
@@ -63,6 +80,20 @@ export default class Card {
     this._setButtonDeleteCardEventListener();
     this._setLikeButtonEventListener();
     this._setOpenPopupEventListeners();
+  }
+
+    // проверяем владельца карточки и убираем кнопку Delete
+    _hasDeleteBtn() {
+      if (this._userId !== this._cardOwnerId) {
+        this._cardTrash.remove();
+      }
+    }
+
+      // поставить/удалить лайк, изменение количества лайков
+  handleLikeCard(cardData) {
+    this._likes = cardData.likes;
+    this._likesNumber.textContent = this._likes.length;
+    this._likeBtn.classList.toggle('element__like-button_active');
   }
 
 }

@@ -6,6 +6,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
 import Api from '../components/Api.js';
+import PopupConfirmation from '../components/PopupConfirmation.js';
 
 import {
   buttonEdit,
@@ -48,7 +49,22 @@ function createCard(items) {
     userId: userId,
     handleCardClick: (items) => {
       popupFullImage.open(items);
-    }
+    },
+    ///
+    handleDeleteIconClick: (cardId) => {
+      deleteCardPopup.open();
+      deleteCardPopup.submitCallback(() => {
+        api.deleteCard(cardId)
+          .then(() => {
+            deleteCardPopup.close();
+            card.deleteCard();
+          })
+          .catch((err) => {
+            console.log(`Ошибка: ${err}`);
+          });
+      });
+    },
+    ///
   });
   const cardItem = card.generateCard();
   return cardItem;
@@ -135,7 +151,19 @@ const userInfo = new UserInfo({
 const popupNewCard = new PopupWithForm({
   popupSelector: '.popup_add-card',
   handleFormSubmit: (data) => {
-    cardList.addItem(createCard(data));
+    // cardList.addItem(createCard(data));
+    popupNewCard.loading(true);
+    api.addCard(data)
+    .then((data) => {
+      cardList.addItem(createCard(data));
+      popupNewCard.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
+    .finally(() => {
+      popupNewCard.loading(false);
+    });
   }
 });
 
@@ -176,3 +204,9 @@ newCardFormValidator.enableValidation();
 
 const avatarEditFormValidator = new FormValidator(validationConfig, formEditAvatar);
 avatarEditFormValidator.enableValidation();
+
+// Создаем попап с подтверждением удаления карточки
+const deleteCardPopup = new PopupConfirmation({
+  popupSelector: '.popup_confirmation'
+});
+deleteCardPopup.setEventListeners();
