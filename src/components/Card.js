@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({cardData, templateSelector, userId, handleCardClick, handleDeleteIconClick, handleSetLike, handleRemoveLike}) {
+  constructor({ cardData, templateSelector, userId, handleCardClick, handleDeleteIconClick, handleSetLike, handleRemoveLike }) {
     this._cardData = cardData;
     this._name = cardData.name;
     this._link = cardData.link;
@@ -44,10 +44,8 @@ export default class Card {
     return this._element;
   }
 
+  //Слушатель на карточку лайка
   _setLikeButtonEventListener() {
-    // this._cardLike.addEventListener('click', () => {
-    //   this._toggleLike();
-    // });
     this._cardLike.addEventListener('click', () => {
       if (this._cardLike.classList.contains('element__like-button_active')) {
         this._handleRemoveLike(this._cardId);
@@ -57,28 +55,17 @@ export default class Card {
     })
   }
 
-  // _toggleLike() {
-  //   this._cardLike.classList.toggle('element__like-button_active');
-  // }
-
+  //Слушатель на кнопку удаления карточки
   _setButtonDeleteCardEventListener() {
     this._cardTrash.addEventListener('click', () => {
-      // this._deleteCard();
       this._handleDeleteIconClick(this._cardId);
     });
   }
 
-  // _deleteCard() {
-  //   this._element.closest('.element').remove();
-  // }
-    // Удаление карточки
-    deleteCard() {
-        this._element.closest('.element').remove();
-      }
-    // deleteCard() {
-    //   this._element.remove();
-    //   this._element = null;
-    // }
+  // Удаление карточки
+  deleteCard() {
+    this._element.closest('.element').remove();
+  }
 
   _setOpenPopupEventListeners() {
     this._cardImage.addEventListener('click', () => {
@@ -92,14 +79,14 @@ export default class Card {
     this._setOpenPopupEventListeners();
   }
 
-    // проверяем владельца карточки и убираем кнопку Delete
-    _hasDeleteBtn() {
-      if (this._userId !== this._cardOwnerId) {
-        this._cardTrash.remove();
-      }
+  // проверяем владельца карточки и убираем кнопку Delete
+  _hasDeleteBtn() {
+    if (this._userId !== this._cardOwnerId) {
+      this._cardTrash.remove();
     }
+  }
 
-      // поставить/удалить лайк, изменение количества лайков
+  // поставить/удалить лайк, изменение количества лайков
   handleLikeCard(cardData) {
     this._likes = cardData.likes;
     this._likesNumber.textContent = this._likes.length;

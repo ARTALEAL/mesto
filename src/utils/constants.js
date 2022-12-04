@@ -1,7 +1,7 @@
 export const formEditProfile = document.forms.user;
 export const formAddNewCard = document.forms.card;
 export const formEditAvatar = document.forms.avatar;
-// export const popupProfileEdit = makePopup(document.querySelector('.popup_profile-edit'));
+
 export const buttonEdit = document.querySelector('.profile__button-edit');
 export const buttonClose = document.querySelector('.popup__close-button');
 export const formEdit = document.querySelector('.popup__container');
@@ -12,8 +12,7 @@ export const jobInput = document.querySelector('.popup__input_data_job');
 export const avatar = document.querySelector('.profile__image');
 
 export const cardsContainer = document.querySelector('.elements');
-//ПР5
-// export const popupAdd = makePopup(document.querySelector('.popup_add-card'));
+
 export const buttonAdd = document.querySelector('.profile__button-add');
 export const formAdd = document.querySelector('.popup__form_add-place');
 export const buttonCreateCard = formAdd.querySelector('.popup__submit-button');
@@ -26,7 +25,6 @@ export const newCardItem = {};
 export const buttonEditAvatar = document.querySelector('.profile__avatar-btn');
 
 //GALLERY
-// export const popupGalery = makePopup(document.querySelector('.popup_gallery'));
 export const galleryImage = document.querySelector('.popup__image');
 export const galleryFigcaption = document.querySelector('.popup__figcaption');
 

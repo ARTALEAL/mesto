@@ -88,28 +88,9 @@ function createCard(items) {
   return cardItem;
 }
 
-// const cardList = new Section({
-//   items: initialCards,
-//   renderer: (data) => {
-//     cardList.addItem(createCard(data));
-//   },
-//   containerSelector: '.elements',
-// });
-
-// cardList.renderItems();
-
-// Создание экземпляра класса Section
-// const cardList = new Section({
-//     items: initialCards,
-//     renderer: (data) => {
-//       cardList.addItem(createCard(data));
-//     },
-//     containerSelector: '.elements',
-//   });
-
 // Создание экземпляра класса Section
 const cardList = new Section({
-    renderer: (data) => {
+  renderer: (data) => {
     cardList.addItem(createCard(data));
   },
 }, '.elements');
@@ -169,19 +150,18 @@ const userInfo = new UserInfo({
 const popupNewCard = new PopupWithForm({
   popupSelector: '.popup_add-card',
   handleFormSubmit: (data) => {
-    // cardList.addItem(createCard(data));
     popupNewCard.loading(true);
     api.addCard(data)
-    .then((data) => {
-      cardList.addItem(createCard(data));
-      popupNewCard.close();
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    })
-    .finally(() => {
-      popupNewCard.loading(false);
-    });
+      .then((data) => {
+        cardList.addItem(createCard(data));
+        popupNewCard.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        popupNewCard.loading(false);
+      });
   }
 });
 
